@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
-const LoginForm = ({ onToggleForm }) => {
+const LoginForm = ({ onToggleForm, onDemoLogin }) => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
@@ -101,7 +101,7 @@ const LoginForm = ({ onToggleForm }) => {
         </button>
       </form>
 
-      <div className="mt-6 text-center">
+      <div className="mt-6 text-center space-y-3">
         <p className="text-gray-600">
           Don't have an account?{' '}
           <button
@@ -111,9 +111,20 @@ const LoginForm = ({ onToggleForm }) => {
             Sign up
           </button>
         </p>
+
+        {/* Demo Login Button */}
+        {onDemoLogin && (
+          <button
+            onClick={onDemoLogin}
+            className="text-sm text-primary-600 hover:text-primary-700 mt-2 underline"
+          >
+            Login with Demo Account
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
 export default LoginForm;
+
